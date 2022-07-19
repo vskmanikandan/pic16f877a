@@ -1,0 +1,885 @@
+
+
+HI-TECH Software PIC LITE Macro Assembler V9.81 build 7503 
+                                                                                               Tue Jul 19 18:03:53 2022
+
+HI-TECH Software Omniscient Code Generator (Lite mode) build 7503
+     1  0000                     opt subtitle "HI-TECH Software Omniscient Code Generator (Lite mode) build 7503"
+     2                           
+     3                           opt pagewidth 120
+     4                           
+     5                           	opt lm
+     6                           
+     7                           	processor	16F877A
+     8                           clrc	macro
+     9                           	bcf	3,0
+    10  0000                     	endm
+    11                           clrz	macro
+    12                           	bcf	3,2
+    13  0000                     	endm
+    14                           setc	macro
+    15                           	bsf	3,0
+    16  0000                     	endm
+    17                           setz	macro
+    18                           	bsf	3,2
+    19  0000                     	endm
+    20                           skipc	macro
+    21                           	btfss	3,0
+    22  0000                     	endm
+    23                           skipz	macro
+    24                           	btfss	3,2
+    25  0000                     	endm
+    26                           skipnc	macro
+    27                           	btfsc	3,0
+    28  0000                     	endm
+    29                           skipnz	macro
+    30                           	btfsc	3,2
+    31  0000                     	endm
+    32  0000                     indf	equ	0
+    33  0000                     indf0	equ	0
+    34  0002                     pc	equ	2
+    35  0002                     pcl	equ	2
+    36  0003                     status	equ	3
+    37  0004                     fsr	equ	4
+    38  0004                     fsr0	equ	4
+    39  0001                     c	equ	1
+    40  0000                     z	equ	0
+    41  000A                     pclath	equ	10
+    42                           	FNCALL	_main,_lcd_init
+    43                           	FNCALL	_main,_uart_init
+    44                           	FNCALL	_main,_lcd_disp
+    45                           	FNCALL	_lcd_init,_lcd_cmd
+    46                           	FNROOT	_main
+    47                           	global	_PORTB
+    48                           psect	text96,local,class=CODE,delta=2
+    49                           global __ptext96
+    50  0000                     __ptext96:
+    51  0006                     _PORTB	set	6
+    52                           	global	_RCREG
+    53  001A                     _RCREG	set	26
+    54                           	global	_RCSTA
+    55  0018                     _RCSTA	set	24
+    56                           	global	_RCIF
+    57  0065                     _RCIF	set	101
+    58                           	global	_RD5
+    59  0045                     _RD5	set	69
+    60                           	global	_RD6
+    61  0046                     _RD6	set	70
+    62                           	global	_RD7
+    63  0047                     _RD7	set	71
+    64                           	global	_TXIF
+    65  0064                     _TXIF	set	100
+    66                           	global	_SPBRG
+    67  0099                     _SPBRG	set	153
+    68                           	global	_TRISB
+    69  0086                     _TRISB	set	134
+    70                           	global	_TXSTA
+    71  0098                     _TXSTA	set	152
+    72                           	global	_TRISC6
+    73  043E                     _TRISC6	set	1086
+    74                           	global	_TRISC7
+    75  043F                     _TRISC7	set	1087
+    76                           	global	_TRISD5
+    77  0445                     _TRISD5	set	1093
+    78                           	global	_TRISD6
+    79  0446                     _TRISD6	set	1094
+    80                           	global	_TRISD7
+    81  0447                     _TRISD7	set	1095
+    82                           	file	"usart_02.as"
+    83                           	line	#
+    84                           psect cinit,class=CODE,delta=2
+    85                           global start_initialization
+    86  0730                     start_initialization:
+    87                           
+    88                           psect cinit,class=CODE,delta=2
+    89                           global end_of_initialization
+    90                           
+    91                           ;End of C runtime variable initialization code
+    92                           
+    93  0730                     end_of_initialization:
+    94  0730  0183               clrf status
+    95  0731  120A  118A  2F47   ljmp _main	;jump to C main() function
+    96                           psect	cstackCOMMON,class=COMMON,space=1
+    97                           global __pcstackCOMMON
+    98  0070                     __pcstackCOMMON:
+    99                           	global	?_lcd_cmd
+   100  0070                     ?_lcd_cmd:	; 0 bytes @ 0x0
+   101                           	global	??_lcd_cmd
+   102  0070                     ??_lcd_cmd:	; 0 bytes @ 0x0
+   103                           	global	?_lcd_disp
+   104  0070                     ?_lcd_disp:	; 0 bytes @ 0x0
+   105                           	global	??_lcd_disp
+   106  0070                     ??_lcd_disp:	; 0 bytes @ 0x0
+   107                           	global	?_uart_init
+   108  0070                     ?_uart_init:	; 0 bytes @ 0x0
+   109                           	global	??_uart_init
+   110  0070                     ??_uart_init:	; 0 bytes @ 0x0
+   111                           	global	?_lcd_init
+   112  0070                     ?_lcd_init:	; 0 bytes @ 0x0
+   113                           	global	?_main
+   114  0070                     ?_main:	; 0 bytes @ 0x0
+   115  0070                     	ds	3
+   116                           	global	lcd_cmd@cmd
+   117  0073                     lcd_cmd@cmd:	; 1 bytes @ 0x3
+   118                           	global	lcd_disp@data
+   119  0073                     lcd_disp@data:	; 1 bytes @ 0x3
+   120  0073                     	ds	1
+   121                           	global	??_lcd_init
+   122  0074                     ??_lcd_init:	; 0 bytes @ 0x4
+   123  0074                     	ds	3
+   124                           	global	??_main
+   125  0077                     ??_main:	; 0 bytes @ 0x7
+   126  0077                     	ds	1
+   127                           	global	main@RData
+   128  0078                     main@RData:	; 1 bytes @ 0x8
+   129  0078                     	ds	1
+   130 ;;Data sizes: Strings 0, constant 0, data 0, bss 0, persistent 0 stack 0
+   131 ;;Auto spaces:   Size  Autos    Used
+   132 ;; COMMON          14      9       9
+   133 ;; BANK0           80      0       0
+   134 ;; BANK1           80      0       0
+   135 ;; BANK3           96      0       0
+   136 ;; BANK2           96      0       0
+   137                           
+   138 ;;
+   139 ;; Pointer list with targets:
+   140                           
+   141                           
+   142                           
+   143 ;;
+   144 ;; Critical Paths under _main in COMMON
+   145 ;;
+   146 ;;   _main->_lcd_init
+   147 ;;   _lcd_init->_lcd_cmd
+   148 ;;
+   149 ;; Critical Paths under _main in BANK0
+   150 ;;
+   151 ;;   None.
+   152 ;;
+   153 ;; Critical Paths under _main in BANK1
+   154 ;;
+   155 ;;   None.
+   156 ;;
+   157 ;; Critical Paths under _main in BANK3
+   158 ;;
+   159 ;;   None.
+   160 ;;
+   161 ;; Critical Paths under _main in BANK2
+   162 ;;
+   163 ;;   None.
+   164                           
+   165 ;;
+   166 ;;Main: autosize = 0, tempsize = 1, incstack = 0, save=0
+   167 ;;
+   168                           
+   169 ;;
+   170 ;;Call Graph Tables:
+   171 ;;
+   172 ;; ---------------------------------------------------------------------------------
+   173 ;; (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+   174 ;; ---------------------------------------------------------------------------------
+   175 ;; (0) _main                                                 2     2      0      45
+   176 ;;                                              7 COMMON     2     2      0
+   177 ;;                           _lcd_init
+   178 ;;                          _uart_init
+   179 ;;                           _lcd_disp
+   180 ;; ---------------------------------------------------------------------------------
+   181 ;; (1) _lcd_init                                             3     3      0      15
+   182 ;;                                              4 COMMON     3     3      0
+   183 ;;                            _lcd_cmd
+   184 ;; ---------------------------------------------------------------------------------
+   185 ;; (1) _lcd_disp                                             4     4      0      15
+   186 ;;                                              0 COMMON     4     4      0
+   187 ;; ---------------------------------------------------------------------------------
+   188 ;; (2) _lcd_cmd                                              4     4      0      15
+   189 ;;                                              0 COMMON     4     4      0
+   190 ;; ---------------------------------------------------------------------------------
+   191 ;; (1) _uart_init                                            0     0      0       0
+   192 ;; ---------------------------------------------------------------------------------
+   193 ;; Estimated maximum stack depth 2
+   194 ;; ---------------------------------------------------------------------------------
+   195                           
+   196 ;; Call Graph Graphs:
+   197                           
+   198 ;; _main (ROOT)
+   199 ;;   _lcd_init
+   200 ;;     _lcd_cmd
+   201 ;;   _uart_init
+   202 ;;   _lcd_disp
+   203 ;;
+   204                           
+   205 ;; Address spaces:
+   206                           
+   207 ;;Name               Size   Autos  Total    Cost      Usage
+   208 ;;BITCOMMON            E      0       0       0        0.0%
+   209 ;;EEDATA             100      0       0       0        0.0%
+   210 ;;NULL                 0      0       0       0        0.0%
+   211 ;;CODE                 0      0       0       0        0.0%
+   212 ;;COMMON               E      9       9       1       64.3%
+   213 ;;BITSFR0              0      0       0       1        0.0%
+   214 ;;SFR0                 0      0       0       1        0.0%
+   215 ;;BITSFR1              0      0       0       2        0.0%
+   216 ;;SFR1                 0      0       0       2        0.0%
+   217 ;;STACK                0      0       2       2        0.0%
+   218 ;;ABS                  0      0       0       3        0.0%
+   219 ;;BITBANK0            50      0       0       4        0.0%
+   220 ;;BITSFR3              0      0       0       4        0.0%
+   221 ;;SFR3                 0      0       0       4        0.0%
+   222 ;;BANK0               50      0       0       5        0.0%
+   223 ;;BITSFR2              0      0       0       5        0.0%
+   224 ;;SFR2                 0      0       0       5        0.0%
+   225 ;;BITBANK1            50      0       0       6        0.0%
+   226 ;;BANK1               50      0       0       7        0.0%
+   227 ;;BITBANK3            60      0       0       8        0.0%
+   228 ;;BANK3               60      0       0       9        0.0%
+   229 ;;BITBANK2            60      0       0      10        0.0%
+   230 ;;BANK2               60      0       0      11        0.0%
+   231 ;;DATA                 0      0       0      12        0.0%
+   232                           
+   233                           	global	_main
+   234                           psect	maintext,global,class=CODE,delta=2
+   235                           global __pmaintext
+   236  0747                     __pmaintext:
+   237                           
+   238 ;; *************** function _main *****************
+   239 ;; Defined at:
+   240 ;;		line 65 in file "C:\Users\Mani\Desktop\pic16f877a\Protocol\USART\usart_02\usart_02.c"
+   241 ;; Parameters:    Size  Location     Type
+   242 ;;		None
+   243 ;; Auto vars:     Size  Location     Type
+   244 ;;  RData           1    8[COMMON] unsigned char 
+   245 ;; Return value:  Size  Location     Type
+   246 ;;		None               void
+   247 ;; Registers used:
+   248 ;;		wreg, status,2, status,0, pclath, cstack
+   249 ;; Tracked objects:
+   250 ;;		On entry : 17F/0
+   251 ;;		On exit  : 0/0
+   252 ;;		Unchanged: 0/0
+   253 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   254 ;;      Params:         0       0       0       0       0
+   255 ;;      Locals:         1       0       0       0       0
+   256 ;;      Temps:          1       0       0       0       0
+   257 ;;      Totals:         2       0       0       0       0
+   258 ;;Total ram usage:        2 bytes
+   259 ;; Hardware stack levels required when called:    2
+   260 ;; This function calls:
+   261 ;;		_lcd_init
+   262 ;;		_uart_init
+   263 ;;		_lcd_disp
+   264 ;; This function is called by:
+   265 ;;		Startup code after reset
+   266 ;; This function uses a non-reentrant model
+   267 ;;
+   268                           psect	maintext
+   269                           	file	"C:\Users\Mani\Desktop\pic16f877a\Protocol\USART\usart_02\usart_02.c"
+   270                           	line	65
+   271                           	global	__size_of_main
+   272  0022                     	__size_of_main	equ	__end_of_main-_main
+   273                           	
+   274  0747                     _main:	
+   275                           	opt	stack 6
+   276                           ; Regs used in _main: [wreg+status,2+status,0+pclath+cstack]
+   277                           	line	67
+   278                           	
+   279  0747                     l1886:	
+   280                           ;usart_02.c: 66: unsigned char RData;
+   281                           ;usart_02.c: 67: lcd_init();
+   282  0747  120A  118A  27B5   	fcall	_lcd_init
+              120A  118A         
+   283                           	line	68
+   284                           ;usart_02.c: 68: uart_init();
+   285  074C  120A  118A  2734   	fcall	_uart_init
+              120A  118A         
+   286  0751  2F53               	goto	l700
+   287                           	line	70
+   288                           ;usart_02.c: 70: while(1)
+   289                           	
+   290  0752                     l699:	
+   291                           	line	72
+   292                           ;usart_02.c: 71: {
+   293                           ;usart_02.c: 72: while(RCIF==0);
+   294  0752  2F53               	goto	l700
+   295                           	
+   296  0753                     l701:	
+   297                           	
+   298  0753                     l700:	
+   299  0753  1283               	bcf	status, 5	;RP0=0, select bank0
+   300  0754  1303               	bcf	status, 6	;RP1=0, select bank0
+   301  0755  1E8C               	btfss	(101/8),(101)&7
+   302  0756  2F58               	goto	u2141
+   303  0757  2F59               	goto	u2140
+   304  0758                     u2141:
+   305  0758  2F53               	goto	l700
+   306  0759                     u2140:
+   307  0759  2F5A               	goto	l1888
+   308                           	
+   309  075A                     l702:	
+   310                           	line	73
+   311                           	
+   312  075A                     l1888:	
+   313                           ;usart_02.c: 73: RData=RCREG;
+   314  075A  081A               	movf	(26),w	;volatile
+   315  075B  00F7               	movwf	(??_main+0)+0
+   316  075C  0877               	movf	(??_main+0)+0,w
+   317  075D  00F8               	movwf	(main@RData)
+   318                           	line	74
+   319                           	
+   320  075E                     l1890:	
+   321                           ;usart_02.c: 74: lcd_disp(RData);
+   322  075E  0878               	movf	(main@RData),w
+   323  075F  120A  118A  278F   	fcall	_lcd_disp
+              120A  118A         
+   324  0764  2F53               	goto	l700
+   325                           	line	76
+   326                           	
+   327  0765                     l703:	
+   328                           	line	70
+   329  0765  2F53               	goto	l700
+   330                           	
+   331  0766                     l704:	
+   332                           	line	77
+   333                           	
+   334  0766                     l705:	
+   335                           	global	start
+   336  0766  120A  118A  2800   	ljmp	start
+   337                           	opt stack 0
+   338                           GLOBAL	__end_of_main
+   339  0769                     	__end_of_main:
+   340 ;; =============== function _main ends ============
+   341                           
+   342                           	signat	_main,88
+   343                           	global	_lcd_init
+   344                           psect	text97,local,class=CODE,delta=2
+   345                           global __ptext97
+   346  07B5                     __ptext97:
+   347                           
+   348 ;; *************** function _lcd_init *****************
+   349 ;; Defined at:
+   350 ;;		line 48 in file "C:\Users\Mani\Desktop\pic16f877a\Protocol\USART\usart_02\usart_02.c"
+   351 ;; Parameters:    Size  Location     Type
+   352 ;;		None
+   353 ;; Auto vars:     Size  Location     Type
+   354 ;;		None
+   355 ;; Return value:  Size  Location     Type
+   356 ;;		None               void
+   357 ;; Registers used:
+   358 ;;		wreg, status,2, status,0, pclath, cstack
+   359 ;; Tracked objects:
+   360 ;;		On entry : 0/0
+   361 ;;		On exit  : 0/0
+   362 ;;		Unchanged: 0/0
+   363 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   364 ;;      Params:         0       0       0       0       0
+   365 ;;      Locals:         0       0       0       0       0
+   366 ;;      Temps:          3       0       0       0       0
+   367 ;;      Totals:         3       0       0       0       0
+   368 ;;Total ram usage:        3 bytes
+   369 ;; Hardware stack levels used:    1
+   370 ;; Hardware stack levels required when called:    1
+   371 ;; This function calls:
+   372 ;;		_lcd_cmd
+   373 ;; This function is called by:
+   374 ;;		_main
+   375 ;; This function uses a non-reentrant model
+   376 ;;
+   377                           psect	text97
+   378                           	file	"C:\Users\Mani\Desktop\pic16f877a\Protocol\USART\usart_02\usart_02.c"
+   379                           	line	48
+   380                           	global	__size_of_lcd_init
+   381  004B                     	__size_of_lcd_init	equ	__end_of_lcd_init-_lcd_init
+   382                           	
+   383  07B5                     _lcd_init:	
+   384                           	opt	stack 6
+   385                           ; Regs used in _lcd_init: [wreg+status,2+status,0+pclath+cstack]
+   386                           	line	49
+   387                           	
+   388  07B5                     l1860:	
+   389                           ;usart_02.c: 49: TRISB=0x00;
+   390  07B5  1683               	bsf	status, 5	;RP0=1, select bank1
+   391  07B6  1303               	bcf	status, 6	;RP1=0, select bank1
+   392  07B7  0186               	clrf	(134)^080h	;volatile
+   393                           	line	50
+   394                           	
+   395  07B8                     l1862:	
+   396                           ;usart_02.c: 50: TRISD5=0;
+   397  07B8  1288               	bcf	(1093/8)^080h,(1093)&7
+   398                           	line	51
+   399                           	
+   400  07B9                     l1864:	
+   401                           ;usart_02.c: 51: TRISD6=0;
+   402  07B9  1308               	bcf	(1094/8)^080h,(1094)&7
+   403                           	line	52
+   404                           	
+   405  07BA                     l1866:	
+   406                           ;usart_02.c: 52: TRISD7=0;
+   407  07BA  1388               	bcf	(1095/8)^080h,(1095)&7
+   408                           	line	53
+   409                           	
+   410  07BB                     l1868:	
+   411                           ;usart_02.c: 53: _delay((unsigned long)((50)*(20000000/4000.0)));
+   412                           	opt asmopt_off
+   413  07BB  3002               movlw  2
+   414  07BC  00F6               movwf	((??_lcd_init+0)+0+2),f
+   415  07BD  3044               movlw	68
+   416  07BE  00F5               movwf	((??_lcd_init+0)+0+1),f
+   417  07BF  30A9               	movlw	169
+   418  07C0  00F4               movwf	((??_lcd_init+0)+0),f
+   419  07C1                     u2157:
+   420  07C1  0BF4               	decfsz	((??_lcd_init+0)+0),f
+   421  07C2  2FC1               	goto	u2157
+   422  07C3  0BF5               	decfsz	((??_lcd_init+0)+0+1),f
+   423  07C4  2FC1               	goto	u2157
+   424  07C5  0BF6               	decfsz	((??_lcd_init+0)+0+2),f
+   425  07C6  2FC1               	goto	u2157
+   426  07C7  0064               	clrwdt
+   427                           opt asmopt_on
+   428                           
+   429                           	line	54
+   430                           	
+   431  07C8                     l1870:	
+   432                           ;usart_02.c: 54: lcd_cmd(0x38);
+   433  07C8  3038               	movlw	(038h)
+   434  07C9  120A  118A  2769   	fcall	_lcd_cmd
+              120A  118A         
+   435                           	line	55
+   436                           	
+   437  07CE                     l1872:	
+   438                           ;usart_02.c: 55: lcd_cmd(0x0F);
+   439  07CE  300F               	movlw	(0Fh)
+   440  07CF  120A  118A  2769   	fcall	_lcd_cmd
+              120A  118A         
+   441                           	line	56
+   442                           	
+   443  07D4                     l1874:	
+   444                           ;usart_02.c: 56: lcd_cmd(0x0C);
+   445  07D4  300C               	movlw	(0Ch)
+   446  07D5  120A  118A  2769   	fcall	_lcd_cmd
+              120A  118A         
+   447                           	line	57
+   448                           	
+   449  07DA                     l1876:	
+   450                           ;usart_02.c: 57: lcd_cmd(0x02);
+   451  07DA  3002               	movlw	(02h)
+   452  07DB  120A  118A  2769   	fcall	_lcd_cmd
+              120A  118A         
+   453                           	line	58
+   454                           	
+   455  07E0                     l1878:	
+   456                           ;usart_02.c: 58: lcd_cmd(0x06);
+   457  07E0  3006               	movlw	(06h)
+   458  07E1  120A  118A  2769   	fcall	_lcd_cmd
+              120A  118A         
+   459                           	line	59
+   460                           	
+   461  07E6                     l1880:	
+   462                           ;usart_02.c: 59: lcd_cmd(0x80);
+   463  07E6  3080               	movlw	(080h)
+   464  07E7  120A  118A  2769   	fcall	_lcd_cmd
+              120A  118A         
+   465                           	line	60
+   466                           	
+   467  07EC                     l1882:	
+   468                           ;usart_02.c: 60: _delay((unsigned long)((50)*(20000000/4000.0)));
+   469                           	opt asmopt_off
+   470  07EC  3002               movlw  2
+   471  07ED  00F6               movwf	((??_lcd_init+0)+0+2),f
+   472  07EE  3044               movlw	68
+   473  07EF  00F5               movwf	((??_lcd_init+0)+0+1),f
+   474  07F0  30A9               	movlw	169
+   475  07F1  00F4               movwf	((??_lcd_init+0)+0),f
+   476  07F2                     u2167:
+   477  07F2  0BF4               	decfsz	((??_lcd_init+0)+0),f
+   478  07F3  2FF2               	goto	u2167
+   479  07F4  0BF5               	decfsz	((??_lcd_init+0)+0+1),f
+   480  07F5  2FF2               	goto	u2167
+   481  07F6  0BF6               	decfsz	((??_lcd_init+0)+0+2),f
+   482  07F7  2FF2               	goto	u2167
+   483  07F8  0064               	clrwdt
+   484                           opt asmopt_on
+   485                           
+   486                           	line	61
+   487                           	
+   488  07F9                     l1884:	
+   489                           ;usart_02.c: 61: lcd_cmd(0x01);
+   490  07F9  3001               	movlw	(01h)
+   491  07FA  120A  118A  2769   	fcall	_lcd_cmd
+              120A  118A         
+   492                           	line	62
+   493                           	
+   494  07FF                     l696:	
+   495  07FF  0008               	return
+   496                           	opt stack 0
+   497                           GLOBAL	__end_of_lcd_init
+   498  0800                     	__end_of_lcd_init:
+   499 ;; =============== function _lcd_init ends ============
+   500                           
+   501                           	signat	_lcd_init,88
+   502                           	global	_lcd_disp
+   503                           psect	text98,local,class=CODE,delta=2
+   504                           global __ptext98
+   505  078F                     __ptext98:
+   506                           
+   507 ;; *************** function _lcd_disp *****************
+   508 ;; Defined at:
+   509 ;;		line 25 in file "C:\Users\Mani\Desktop\pic16f877a\Protocol\USART\usart_02\usart_02.c"
+   510 ;; Parameters:    Size  Location     Type
+   511 ;;  data            1    wreg     unsigned char 
+   512 ;; Auto vars:     Size  Location     Type
+   513 ;;  data            1    3[COMMON] unsigned char 
+   514 ;; Return value:  Size  Location     Type
+   515 ;;		None               void
+   516 ;; Registers used:
+   517 ;;		wreg
+   518 ;; Tracked objects:
+   519 ;;		On entry : 0/0
+   520 ;;		On exit  : 0/0
+   521 ;;		Unchanged: 0/0
+   522 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   523 ;;      Params:         0       0       0       0       0
+   524 ;;      Locals:         1       0       0       0       0
+   525 ;;      Temps:          3       0       0       0       0
+   526 ;;      Totals:         4       0       0       0       0
+   527 ;;Total ram usage:        4 bytes
+   528 ;; Hardware stack levels used:    1
+   529 ;; This function calls:
+   530 ;;		Nothing
+   531 ;; This function is called by:
+   532 ;;		_main
+   533 ;; This function uses a non-reentrant model
+   534 ;;
+   535                           psect	text98
+   536                           	file	"C:\Users\Mani\Desktop\pic16f877a\Protocol\USART\usart_02\usart_02.c"
+   537                           	line	25
+   538                           	global	__size_of_lcd_disp
+   539  0026                     	__size_of_lcd_disp	equ	__end_of_lcd_disp-_lcd_disp
+   540                           	
+   541  078F                     _lcd_disp:	
+   542                           	opt	stack 7
+   543                           ; Regs used in _lcd_disp: [wreg]
+   544                           ;lcd_disp@data stored from wreg
+   545  078F  00F3               	movwf	(lcd_disp@data)
+   546                           	line	26
+   547                           	
+   548  0790                     l1854:	
+   549                           ;usart_02.c: 26: RD5 = 1;
+   550  0790  1283               	bcf	status, 5	;RP0=0, select bank0
+   551  0791  1303               	bcf	status, 6	;RP1=0, select bank0
+   552  0792  1688               	bsf	(69/8),(69)&7
+   553                           	line	27
+   554                           ;usart_02.c: 27: RD6 = 0;
+   555  0793  1308               	bcf	(70/8),(70)&7
+   556                           	line	28
+   557                           ;usart_02.c: 28: RD7 = 1;
+   558  0794  1788               	bsf	(71/8),(71)&7
+   559                           	line	29
+   560                           	
+   561  0795                     l1856:	
+   562                           ;usart_02.c: 29: PORTB = data;
+   563  0795  0873               	movf	(lcd_disp@data),w
+   564  0796  0086               	movwf	(6)	;volatile
+   565                           	line	30
+   566                           ;usart_02.c: 30: _delay((unsigned long)((50)*(20000000/4000.0)));
+   567                           	opt asmopt_off
+   568  0797  3002               movlw  2
+   569  0798  00F2               movwf	((??_lcd_disp+0)+0+2),f
+   570  0799  3044               movlw	68
+   571  079A  00F1               movwf	((??_lcd_disp+0)+0+1),f
+   572  079B  30A9               	movlw	169
+   573  079C  00F0               movwf	((??_lcd_disp+0)+0),f
+   574  079D                     u2177:
+   575  079D  0BF0               	decfsz	((??_lcd_disp+0)+0),f
+   576  079E  2F9D               	goto	u2177
+   577  079F  0BF1               	decfsz	((??_lcd_disp+0)+0+1),f
+   578  07A0  2F9D               	goto	u2177
+   579  07A1  0BF2               	decfsz	((??_lcd_disp+0)+0+2),f
+   580  07A2  2F9D               	goto	u2177
+   581  07A3  0064               	clrwdt
+   582                           opt asmopt_on
+   583                           
+   584                           	line	31
+   585                           	
+   586  07A4                     l1858:	
+   587                           ;usart_02.c: 31: RD7 = 0;
+   588  07A4  1283               	bcf	status, 5	;RP0=0, select bank0
+   589  07A5  1303               	bcf	status, 6	;RP1=0, select bank0
+   590  07A6  1388               	bcf	(71/8),(71)&7
+   591                           	line	32
+   592                           ;usart_02.c: 32: _delay((unsigned long)((50)*(20000000/4000.0)));
+   593                           	opt asmopt_off
+   594  07A7  3002               movlw  2
+   595  07A8  00F2               movwf	((??_lcd_disp+0)+0+2),f
+   596  07A9  3044               movlw	68
+   597  07AA  00F1               movwf	((??_lcd_disp+0)+0+1),f
+   598  07AB  30A9               	movlw	169
+   599  07AC  00F0               movwf	((??_lcd_disp+0)+0),f
+   600  07AD                     u2187:
+   601  07AD  0BF0               	decfsz	((??_lcd_disp+0)+0),f
+   602  07AE  2FAD               	goto	u2187
+   603  07AF  0BF1               	decfsz	((??_lcd_disp+0)+0+1),f
+   604  07B0  2FAD               	goto	u2187
+   605  07B1  0BF2               	decfsz	((??_lcd_disp+0)+0+2),f
+   606  07B2  2FAD               	goto	u2187
+   607  07B3  0064               	clrwdt
+   608                           opt asmopt_on
+   609                           
+   610                           	line	33
+   611                           	
+   612  07B4                     l690:	
+   613  07B4  0008               	return
+   614                           	opt stack 0
+   615                           GLOBAL	__end_of_lcd_disp
+   616  07B5                     	__end_of_lcd_disp:
+   617 ;; =============== function _lcd_disp ends ============
+   618                           
+   619                           	signat	_lcd_disp,4216
+   620                           	global	_lcd_cmd
+   621                           psect	text99,local,class=CODE,delta=2
+   622                           global __ptext99
+   623  0769                     __ptext99:
+   624                           
+   625 ;; *************** function _lcd_cmd *****************
+   626 ;; Defined at:
+   627 ;;		line 14 in file "C:\Users\Mani\Desktop\pic16f877a\Protocol\USART\usart_02\usart_02.c"
+   628 ;; Parameters:    Size  Location     Type
+   629 ;;  cmd             1    wreg     unsigned char 
+   630 ;; Auto vars:     Size  Location     Type
+   631 ;;  cmd             1    3[COMMON] unsigned char 
+   632 ;; Return value:  Size  Location     Type
+   633 ;;		None               void
+   634 ;; Registers used:
+   635 ;;		wreg
+   636 ;; Tracked objects:
+   637 ;;		On entry : 0/0
+   638 ;;		On exit  : 0/0
+   639 ;;		Unchanged: 0/0
+   640 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   641 ;;      Params:         0       0       0       0       0
+   642 ;;      Locals:         1       0       0       0       0
+   643 ;;      Temps:          3       0       0       0       0
+   644 ;;      Totals:         4       0       0       0       0
+   645 ;;Total ram usage:        4 bytes
+   646 ;; Hardware stack levels used:    1
+   647 ;; This function calls:
+   648 ;;		Nothing
+   649 ;; This function is called by:
+   650 ;;		_lcd_init
+   651 ;; This function uses a non-reentrant model
+   652 ;;
+   653                           psect	text99
+   654                           	file	"C:\Users\Mani\Desktop\pic16f877a\Protocol\USART\usart_02\usart_02.c"
+   655                           	line	14
+   656                           	global	__size_of_lcd_cmd
+   657  0026                     	__size_of_lcd_cmd	equ	__end_of_lcd_cmd-_lcd_cmd
+   658                           	
+   659  0769                     _lcd_cmd:	
+   660                           	opt	stack 6
+   661                           ; Regs used in _lcd_cmd: [wreg]
+   662                           ;lcd_cmd@cmd stored from wreg
+   663  0769  00F3               	movwf	(lcd_cmd@cmd)
+   664                           	line	15
+   665                           	
+   666  076A                     l1848:	
+   667                           ;usart_02.c: 15: RD5 = 0;
+   668  076A  1283               	bcf	status, 5	;RP0=0, select bank0
+   669  076B  1303               	bcf	status, 6	;RP1=0, select bank0
+   670  076C  1288               	bcf	(69/8),(69)&7
+   671                           	line	16
+   672                           ;usart_02.c: 16: RD6 = 0;
+   673  076D  1308               	bcf	(70/8),(70)&7
+   674                           	line	17
+   675                           ;usart_02.c: 17: RD7 = 1;
+   676  076E  1788               	bsf	(71/8),(71)&7
+   677                           	line	18
+   678                           	
+   679  076F                     l1850:	
+   680                           ;usart_02.c: 18: PORTB = cmd;
+   681  076F  0873               	movf	(lcd_cmd@cmd),w
+   682  0770  0086               	movwf	(6)	;volatile
+   683                           	line	19
+   684                           ;usart_02.c: 19: _delay((unsigned long)((50)*(20000000/4000.0)));
+   685                           	opt asmopt_off
+   686  0771  3002               movlw  2
+   687  0772  00F2               movwf	((??_lcd_cmd+0)+0+2),f
+   688  0773  3044               movlw	68
+   689  0774  00F1               movwf	((??_lcd_cmd+0)+0+1),f
+   690  0775  30A9               	movlw	169
+   691  0776  00F0               movwf	((??_lcd_cmd+0)+0),f
+   692  0777                     u2197:
+   693  0777  0BF0               	decfsz	((??_lcd_cmd+0)+0),f
+   694  0778  2F77               	goto	u2197
+   695  0779  0BF1               	decfsz	((??_lcd_cmd+0)+0+1),f
+   696  077A  2F77               	goto	u2197
+   697  077B  0BF2               	decfsz	((??_lcd_cmd+0)+0+2),f
+   698  077C  2F77               	goto	u2197
+   699  077D  0064               	clrwdt
+   700                           opt asmopt_on
+   701                           
+   702                           	line	20
+   703                           	
+   704  077E                     l1852:	
+   705                           ;usart_02.c: 20: RD7 = 0;
+   706  077E  1283               	bcf	status, 5	;RP0=0, select bank0
+   707  077F  1303               	bcf	status, 6	;RP1=0, select bank0
+   708  0780  1388               	bcf	(71/8),(71)&7
+   709                           	line	21
+   710                           ;usart_02.c: 21: _delay((unsigned long)((50)*(20000000/4000.0)));
+   711                           	opt asmopt_off
+   712  0781  3002               movlw  2
+   713  0782  00F2               movwf	((??_lcd_cmd+0)+0+2),f
+   714  0783  3044               movlw	68
+   715  0784  00F1               movwf	((??_lcd_cmd+0)+0+1),f
+   716  0785  30A9               	movlw	169
+   717  0786  00F0               movwf	((??_lcd_cmd+0)+0),f
+   718  0787                     u2207:
+   719  0787  0BF0               	decfsz	((??_lcd_cmd+0)+0),f
+   720  0788  2F87               	goto	u2207
+   721  0789  0BF1               	decfsz	((??_lcd_cmd+0)+0+1),f
+   722  078A  2F87               	goto	u2207
+   723  078B  0BF2               	decfsz	((??_lcd_cmd+0)+0+2),f
+   724  078C  2F87               	goto	u2207
+   725  078D  0064               	clrwdt
+   726                           opt asmopt_on
+   727                           
+   728                           	line	22
+   729                           	
+   730  078E                     l687:	
+   731  078E  0008               	return
+   732                           	opt stack 0
+   733                           GLOBAL	__end_of_lcd_cmd
+   734  078F                     	__end_of_lcd_cmd:
+   735 ;; =============== function _lcd_cmd ends ============
+   736                           
+   737                           	signat	_lcd_cmd,4216
+   738                           	global	_uart_init
+   739                           psect	text100,local,class=CODE,delta=2
+   740                           global __ptext100
+   741  0734                     __ptext100:
+   742                           
+   743 ;; *************** function _uart_init *****************
+   744 ;; Defined at:
+   745 ;;		line 37 in file "C:\Users\Mani\Desktop\pic16f877a\Protocol\USART\usart_02\usart_02.c"
+   746 ;; Parameters:    Size  Location     Type
+   747 ;;		None
+   748 ;; Auto vars:     Size  Location     Type
+   749 ;;		None
+   750 ;; Return value:  Size  Location     Type
+   751 ;;		None               void
+   752 ;; Registers used:
+   753 ;;		wreg
+   754 ;; Tracked objects:
+   755 ;;		On entry : 0/0
+   756 ;;		On exit  : 0/0
+   757 ;;		Unchanged: 0/0
+   758 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   759 ;;      Params:         0       0       0       0       0
+   760 ;;      Locals:         0       0       0       0       0
+   761 ;;      Temps:          0       0       0       0       0
+   762 ;;      Totals:         0       0       0       0       0
+   763 ;;Total ram usage:        0 bytes
+   764 ;; Hardware stack levels used:    1
+   765 ;; This function calls:
+   766 ;;		Nothing
+   767 ;; This function is called by:
+   768 ;;		_main
+   769 ;; This function uses a non-reentrant model
+   770 ;;
+   771                           psect	text100
+   772                           	file	"C:\Users\Mani\Desktop\pic16f877a\Protocol\USART\usart_02\usart_02.c"
+   773                           	line	37
+   774                           	global	__size_of_uart_init
+   775  0013                     	__size_of_uart_init	equ	__end_of_uart_init-_uart_init
+   776                           	
+   777  0734                     _uart_init:	
+   778                           	opt	stack 7
+   779                           ; Regs used in _uart_init: [wreg]
+   780                           	line	38
+   781                           	
+   782  0734                     l1074:	
+   783                           ;usart_02.c: 38: TRISC6 = 0;
+   784  0734  1683               	bsf	status, 5	;RP0=1, select bank1
+   785  0735  1303               	bcf	status, 6	;RP1=0, select bank1
+   786  0736  1307               	bcf	(1086/8)^080h,(1086)&7
+   787                           	line	39
+   788                           ;usart_02.c: 39: TRISC7 = 1;
+   789  0737  1787               	bsf	(1087/8)^080h,(1087)&7
+   790                           	line	40
+   791                           	
+   792  0738                     l1076:	
+   793                           ;usart_02.c: 40: TXSTA = 0X20;
+   794  0738  3020               	movlw	(020h)
+   795  0739  0098               	movwf	(152)^080h	;volatile
+   796                           	line	41
+   797                           ;usart_02.c: 41: RCSTA = 0X90;
+   798  073A  3090               	movlw	(090h)
+   799  073B  1283               	bcf	status, 5	;RP0=0, select bank0
+   800  073C  1303               	bcf	status, 6	;RP1=0, select bank0
+   801  073D  0098               	movwf	(24)	;volatile
+   802                           	line	42
+   803                           ;usart_02.c: 42: SPBRG = 31;
+   804  073E  301F               	movlw	(01Fh)
+   805  073F  1683               	bsf	status, 5	;RP0=1, select bank1
+   806  0740  1303               	bcf	status, 6	;RP1=0, select bank1
+   807  0741  0099               	movwf	(153)^080h	;volatile
+   808                           	line	43
+   809                           	
+   810  0742                     l1078:	
+   811                           ;usart_02.c: 43: TXIF = 0;
+   812  0742  1283               	bcf	status, 5	;RP0=0, select bank0
+   813  0743  1303               	bcf	status, 6	;RP1=0, select bank0
+   814  0744  120C               	bcf	(100/8),(100)&7
+   815                           	line	44
+   816                           	
+   817  0745                     l1080:	
+   818                           ;usart_02.c: 44: RCIF = 0;
+   819  0745  128C               	bcf	(101/8),(101)&7
+   820                           	line	45
+   821                           	
+   822  0746                     l693:	
+   823  0746  0008               	return
+   824                           	opt stack 0
+   825                           GLOBAL	__end_of_uart_init
+   826  0747                     	__end_of_uart_init:
+   827 ;; =============== function _uart_init ends ============
+   828                           
+   829                           	signat	_uart_init,88
+   830                           psect	text101,local,class=CODE,delta=2
+   831                           global __ptext101
+   832  0000                     __ptext101:
+   833                           	global	btemp
+   834  007E                     	btemp set 07Eh
+   835                           
+   836                           	DABS	1,126,2	;btemp
+   837                           	global	wtemp0
+   838  007E                     	wtemp0 set btemp
+
+
+HI-TECH Software PICC Macro Assembler V9.81 build 7503 
+Symbol Table                                                                                   Tue Jul 19 18:03:53 2022
+
+                 l700 0753                   l701 0753                   l702 075A                   l703 0765  
+                 l704 0766                   l705 0766                   l690 07B4                   l693 0746  
+                 l687 078E                   l696 07FF                   l699 0752                   _RD5 0045  
+                 _RD6 0046                   _RD7 0047          lcd_disp@data 0073                  l1080 0745  
+                l1074 0734                  l1076 0738                  l1078 0742                  l1850 076F  
+                l1852 077E                  l1860 07B5                  l1854 0790                  l1870 07C8  
+                l1862 07B8                  l1848 076A                  l1856 0795                  l1880 07E6  
+                l1872 07CE                  l1864 07B9                  l1858 07A4                  l1882 07EC  
+                l1874 07D4                  l1866 07BA                  l1890 075E                  l1884 07F9  
+                l1876 07DA                  l1868 07BB                  l1878 07E0                  l1886 0747  
+                l1888 075A                  u2140 0759                  u2141 0758                  u2207 0787  
+                u2157 07C1                  u2167 07F2                  u2177 079D                  u2187 07AD  
+                u2197 0777                  _RCIF 0065                  _TXIF 0064                  _main 0747  
+                btemp 007E                  start 0000                 ?_main 0070                 _RCREG 001A  
+               _RCSTA 0018                 _SPBRG 0099                 _PORTB 0006                 _TRISB 0086  
+               _TXSTA 0098       __end_of_lcd_cmd 078F                 status 0003                 wtemp0 007E  
+        __end_of_main 0769                ??_main 0077                _TRISC6 043E                _TRISD5 0445  
+              _TRISC7 043F                _TRISD6 0446                _TRISD7 0447      __end_of_lcd_disp 07B5  
+    __end_of_lcd_init 0800             ??_lcd_cmd 0070        __pcstackCOMMON 0070            __pmaintext 0747  
+  __size_of_uart_init 0013             ?_lcd_disp 0070             ?_lcd_init 0070               _lcd_cmd 0769  
+          ??_lcd_disp 0070            ??_lcd_init 0074  end_of_initialization 0730     __end_of_uart_init 0747  
+          lcd_cmd@cmd 0073   start_initialization 0730     __size_of_lcd_disp 0026     __size_of_lcd_init 004B  
+           __ptext100 0734             __ptext101 0000              ?_lcd_cmd 0070             _uart_init 0734  
+           main@RData 0078            ?_uart_init 0070      __size_of_lcd_cmd 0026              __ptext96 0000  
+            __ptext97 07B5              __ptext98 078F              __ptext99 0769              _lcd_disp 078F  
+            _lcd_init 07B5         __size_of_main 0022           ??_uart_init 0070  

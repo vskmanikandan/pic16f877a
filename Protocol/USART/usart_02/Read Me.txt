@@ -1,0 +1,1 @@
+Serial Data Received from PC and Displayed on 16×2 Using USART of Pic16f877a Microcontroller

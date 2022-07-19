@@ -1,0 +1,6 @@
+_lcd_cmd: CODE, 1897 0 38
+_lcd_disp: CODE, 1935 0 38
+_main: CODE, 1863 0 34
+_uart_init: CODE, 1844 0 19
+_lcd_init: CODE, 1973 0 75
+Total: 204

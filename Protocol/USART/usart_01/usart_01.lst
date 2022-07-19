@@ -1,0 +1,640 @@
+
+
+HI-TECH Software PIC LITE Macro Assembler V9.81 build 7503 
+                                                                                               Mon Jul 18 17:08:17 2022
+
+HI-TECH Software Omniscient Code Generator (Lite mode) build 7503
+     1  0000                     opt subtitle "HI-TECH Software Omniscient Code Generator (Lite mode) build 7503"
+     2                           
+     3                           opt pagewidth 120
+     4                           
+     5                           	opt lm
+     6                           
+     7                           	processor	16F877A
+     8                           clrc	macro
+     9                           	bcf	3,0
+    10  0000                     	endm
+    11                           clrz	macro
+    12                           	bcf	3,2
+    13  0000                     	endm
+    14                           setc	macro
+    15                           	bsf	3,0
+    16  0000                     	endm
+    17                           setz	macro
+    18                           	bsf	3,2
+    19  0000                     	endm
+    20                           skipc	macro
+    21                           	btfss	3,0
+    22  0000                     	endm
+    23                           skipz	macro
+    24                           	btfss	3,2
+    25  0000                     	endm
+    26                           skipnc	macro
+    27                           	btfsc	3,0
+    28  0000                     	endm
+    29                           skipnz	macro
+    30                           	btfsc	3,2
+    31  0000                     	endm
+    32  0000                     indf	equ	0
+    33  0000                     indf0	equ	0
+    34  0002                     pc	equ	2
+    35  0002                     pcl	equ	2
+    36  0003                     status	equ	3
+    37  0004                     fsr	equ	4
+    38  0004                     fsr0	equ	4
+    39  0001                     c	equ	1
+    40  0000                     z	equ	0
+    41  000A                     pclath	equ	10
+    42                           # 3 "C:\Users\Mani\Desktop\pic16f877a\Protocol\USART\usart_01\usart_01.c"
+    43                           	psect config,class=CONFIG,delta=2 ;#
+    44                           # 3 "C:\Users\Mani\Desktop\pic16f877a\Protocol\USART\usart_01\usart_01.c"
+    45  2007  1F7A               	dw 0x1F7A ;#
+    46                           	FNCALL	_main,_uart_init
+    47                           	FNCALL	_main,_uart_tx
+    48                           	FNROOT	_main
+    49                           	global	_RCSTA
+    50                           psect	text66,local,class=CODE,delta=2
+    51                           global __ptext66
+    52  0000                     __ptext66:
+    53  0018                     _RCSTA	set	24
+    54                           	global	_TXREG
+    55  0019                     _TXREG	set	25
+    56                           	global	_RCIF
+    57  0065                     _RCIF	set	101
+    58                           	global	_SPEN
+    59  00C7                     _SPEN	set	199
+    60                           	global	_TXIF
+    61  0064                     _TXIF	set	100
+    62                           	global	_SPBRG
+    63  0099                     _SPBRG	set	153
+    64                           	global	_TXSTA
+    65  0098                     _TXSTA	set	152
+    66                           	global	_TRISC6
+    67  043E                     _TRISC6	set	1086
+    68                           	global	_TRISC7
+    69  043F                     _TRISC7	set	1087
+    70                           	global	_TXEN
+    71  04C5                     _TXEN	set	1221
+    72                           	file	"usart_01.as"
+    73                           	line	#
+    74                           psect cinit,class=CODE,delta=2
+    75                           global start_initialization
+    76  0767                     start_initialization:
+    77                           
+    78                           psect cinit,class=CODE,delta=2
+    79                           global end_of_initialization
+    80                           
+    81                           ;End of C runtime variable initialization code
+    82                           
+    83  0767                     end_of_initialization:
+    84  0767  0183               clrf status
+    85  0768  120A  118A  2F8A   ljmp _main	;jump to C main() function
+    86                           psect	cstackCOMMON,class=COMMON,space=1
+    87                           global __pcstackCOMMON
+    88  0070                     __pcstackCOMMON:
+    89                           	global	?_uart_init
+    90  0070                     ?_uart_init:	; 0 bytes @ 0x0
+    91                           	global	??_uart_init
+    92  0070                     ??_uart_init:	; 0 bytes @ 0x0
+    93                           	global	?_uart_tx
+    94  0070                     ?_uart_tx:	; 0 bytes @ 0x0
+    95                           	global	??_uart_tx
+    96  0070                     ??_uart_tx:	; 0 bytes @ 0x0
+    97                           	global	?_main
+    98  0070                     ?_main:	; 0 bytes @ 0x0
+    99                           	global	uart_tx@val
+   100  0070                     uart_tx@val:	; 1 bytes @ 0x0
+   101  0070                     	ds	1
+   102                           	global	??_main
+   103  0071                     ??_main:	; 0 bytes @ 0x1
+   104  0071                     	ds	3
+   105 ;;Data sizes: Strings 0, constant 0, data 0, bss 0, persistent 0 stack 0
+   106 ;;Auto spaces:   Size  Autos    Used
+   107 ;; COMMON          14      4       4
+   108 ;; BANK0           80      0       0
+   109 ;; BANK1           80      0       0
+   110 ;; BANK3           96      0       0
+   111 ;; BANK2           96      0       0
+   112                           
+   113 ;;
+   114 ;; Pointer list with targets:
+   115                           
+   116                           
+   117                           
+   118 ;;
+   119 ;; Critical Paths under _main in COMMON
+   120 ;;
+   121 ;;   _main->_uart_tx
+   122 ;;
+   123 ;; Critical Paths under _main in BANK0
+   124 ;;
+   125 ;;   None.
+   126 ;;
+   127 ;; Critical Paths under _main in BANK1
+   128 ;;
+   129 ;;   None.
+   130 ;;
+   131 ;; Critical Paths under _main in BANK3
+   132 ;;
+   133 ;;   None.
+   134 ;;
+   135 ;; Critical Paths under _main in BANK2
+   136 ;;
+   137 ;;   None.
+   138                           
+   139 ;;
+   140 ;;Main: autosize = 0, tempsize = 3, incstack = 0, save=0
+   141 ;;
+   142                           
+   143 ;;
+   144 ;;Call Graph Tables:
+   145 ;;
+   146 ;; ---------------------------------------------------------------------------------
+   147 ;; (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+   148 ;; ---------------------------------------------------------------------------------
+   149 ;; (0) _main                                                 3     3      0      15
+   150 ;;                                              1 COMMON     3     3      0
+   151 ;;                          _uart_init
+   152 ;;                            _uart_tx
+   153 ;; ---------------------------------------------------------------------------------
+   154 ;; (1) _uart_tx                                              1     1      0      15
+   155 ;;                                              0 COMMON     1     1      0
+   156 ;; ---------------------------------------------------------------------------------
+   157 ;; (1) _uart_init                                            0     0      0       0
+   158 ;; ---------------------------------------------------------------------------------
+   159 ;; Estimated maximum stack depth 1
+   160 ;; ---------------------------------------------------------------------------------
+   161                           
+   162 ;; Call Graph Graphs:
+   163                           
+   164 ;; _main (ROOT)
+   165 ;;   _uart_init
+   166 ;;   _uart_tx
+   167 ;;
+   168                           
+   169 ;; Address spaces:
+   170                           
+   171 ;;Name               Size   Autos  Total    Cost      Usage
+   172 ;;BITCOMMON            E      0       0       0        0.0%
+   173 ;;EEDATA             100      0       0       0        0.0%
+   174 ;;NULL                 0      0       0       0        0.0%
+   175 ;;CODE                 0      0       0       0        0.0%
+   176 ;;COMMON               E      4       4       1       28.6%
+   177 ;;BITSFR0              0      0       0       1        0.0%
+   178 ;;SFR0                 0      0       0       1        0.0%
+   179 ;;BITSFR1              0      0       0       2        0.0%
+   180 ;;SFR1                 0      0       0       2        0.0%
+   181 ;;STACK                0      0       1       2        0.0%
+   182 ;;ABS                  0      0       0       3        0.0%
+   183 ;;BITBANK0            50      0       0       4        0.0%
+   184 ;;BITSFR3              0      0       0       4        0.0%
+   185 ;;SFR3                 0      0       0       4        0.0%
+   186 ;;BANK0               50      0       0       5        0.0%
+   187 ;;BITSFR2              0      0       0       5        0.0%
+   188 ;;SFR2                 0      0       0       5        0.0%
+   189 ;;BITBANK1            50      0       0       6        0.0%
+   190 ;;BANK1               50      0       0       7        0.0%
+   191 ;;BITBANK3            60      0       0       8        0.0%
+   192 ;;BANK3               60      0       0       9        0.0%
+   193 ;;BITBANK2            60      0       0      10        0.0%
+   194 ;;BANK2               60      0       0      11        0.0%
+   195 ;;DATA                 0      0       0      12        0.0%
+   196                           
+   197                           	global	_main
+   198                           psect	maintext,global,class=CODE,delta=2
+   199                           global __pmaintext
+   200  078A                     __pmaintext:
+   201                           
+   202 ;; *************** function _main *****************
+   203 ;; Defined at:
+   204 ;;		line 29 in file "C:\Users\Mani\Desktop\pic16f877a\Protocol\USART\usart_01\usart_01.c"
+   205 ;; Parameters:    Size  Location     Type
+   206 ;;		None
+   207 ;; Auto vars:     Size  Location     Type
+   208 ;;		None
+   209 ;; Return value:  Size  Location     Type
+   210 ;;		None               void
+   211 ;; Registers used:
+   212 ;;		wreg, status,2, status,0, pclath, cstack
+   213 ;; Tracked objects:
+   214 ;;		On entry : 17F/0
+   215 ;;		On exit  : 0/0
+   216 ;;		Unchanged: 0/0
+   217 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   218 ;;      Params:         0       0       0       0       0
+   219 ;;      Locals:         0       0       0       0       0
+   220 ;;      Temps:          3       0       0       0       0
+   221 ;;      Totals:         3       0       0       0       0
+   222 ;;Total ram usage:        3 bytes
+   223 ;; Hardware stack levels required when called:    1
+   224 ;; This function calls:
+   225 ;;		_uart_init
+   226 ;;		_uart_tx
+   227 ;; This function is called by:
+   228 ;;		Startup code after reset
+   229 ;; This function uses a non-reentrant model
+   230 ;;
+   231                           psect	maintext
+   232                           	file	"C:\Users\Mani\Desktop\pic16f877a\Protocol\USART\usart_01\usart_01.c"
+   233                           	line	29
+   234                           	global	__size_of_main
+   235  0076                     	__size_of_main	equ	__end_of_main-_main
+   236                           	
+   237  078A                     _main:	
+   238                           	opt	stack 7
+   239                           ; Regs used in _main: [wreg+status,2+status,0+pclath+cstack]
+   240                           	line	30
+   241                           	
+   242  078A                     l1850:	
+   243                           ;usart_01.c: 30: uart_init();
+   244  078A  120A  118A  2777   	fcall	_uart_init
+              120A  118A         
+   245                           	line	31
+   246                           ;usart_01.c: 31: uart_tx('S');
+   247  078F  3053               	movlw	(053h)
+   248  0790  120A  118A  276B   	fcall	_uart_tx
+              120A  118A         
+   249                           	line	32
+   250                           	
+   251  0795                     l1852:	
+   252                           ;usart_01.c: 32: _delay((unsigned long)((100)*(20000000/4000.0)));
+   253                           	opt asmopt_off
+   254  0795  3003               movlw  3
+   255  0796  00F3               movwf	((??_main+0)+0+2),f
+   256  0797  3088               movlw	136
+   257  0798  00F2               movwf	((??_main+0)+0+1),f
+   258  0799  3056               	movlw	86
+   259  079A  00F1               movwf	((??_main+0)+0),f
+   260  079B                     u2157:
+   261  079B  0BF1               	decfsz	((??_main+0)+0),f
+   262  079C  2F9B               	goto	u2157
+   263  079D  0BF2               	decfsz	((??_main+0)+0+1),f
+   264  079E  2F9B               	goto	u2157
+   265  079F  0BF3               	decfsz	((??_main+0)+0+2),f
+   266  07A0  2F9B               	goto	u2157
+   267                           opt asmopt_on
+   268                           
+   269                           	line	33
+   270                           	
+   271  07A1                     l1854:	
+   272                           ;usart_01.c: 33: uart_tx('L');
+   273  07A1  304C               	movlw	(04Ch)
+   274  07A2  120A  118A  276B   	fcall	_uart_tx
+              120A  118A         
+   275                           	line	34
+   276                           ;usart_01.c: 34: _delay((unsigned long)((100)*(20000000/4000.0)));
+   277                           	opt asmopt_off
+   278  07A7  3003               movlw  3
+   279  07A8  00F3               movwf	((??_main+0)+0+2),f
+   280  07A9  3088               movlw	136
+   281  07AA  00F2               movwf	((??_main+0)+0+1),f
+   282  07AB  3056               	movlw	86
+   283  07AC  00F1               movwf	((??_main+0)+0),f
+   284  07AD                     u2167:
+   285  07AD  0BF1               	decfsz	((??_main+0)+0),f
+   286  07AE  2FAD               	goto	u2167
+   287  07AF  0BF2               	decfsz	((??_main+0)+0+1),f
+   288  07B0  2FAD               	goto	u2167
+   289  07B1  0BF3               	decfsz	((??_main+0)+0+2),f
+   290  07B2  2FAD               	goto	u2167
+   291                           opt asmopt_on
+   292                           
+   293                           	line	35
+   294                           	
+   295  07B3                     l1856:	
+   296                           ;usart_01.c: 35: uart_tx(' ');
+   297  07B3  3020               	movlw	(020h)
+   298  07B4  120A  118A  276B   	fcall	_uart_tx
+              120A  118A         
+   299                           	line	36
+   300                           	
+   301  07B9                     l1858:	
+   302                           ;usart_01.c: 36: _delay((unsigned long)((100)*(20000000/4000.0)));
+   303                           	opt asmopt_off
+   304  07B9  3003               movlw  3
+   305  07BA  00F3               movwf	((??_main+0)+0+2),f
+   306  07BB  3088               movlw	136
+   307  07BC  00F2               movwf	((??_main+0)+0+1),f
+   308  07BD  3056               	movlw	86
+   309  07BE  00F1               movwf	((??_main+0)+0),f
+   310  07BF                     u2177:
+   311  07BF  0BF1               	decfsz	((??_main+0)+0),f
+   312  07C0  2FBF               	goto	u2177
+   313  07C1  0BF2               	decfsz	((??_main+0)+0+1),f
+   314  07C2  2FBF               	goto	u2177
+   315  07C3  0BF3               	decfsz	((??_main+0)+0+2),f
+   316  07C4  2FBF               	goto	u2177
+   317                           opt asmopt_on
+   318                           
+   319                           	line	37
+   320                           ;usart_01.c: 37: uart_tx('D');
+   321  07C5  3044               	movlw	(044h)
+   322  07C6  120A  118A  276B   	fcall	_uart_tx
+              120A  118A         
+   323                           	line	38
+   324                           	
+   325  07CB                     l1860:	
+   326                           ;usart_01.c: 38: _delay((unsigned long)((100)*(20000000/4000.0)));
+   327                           	opt asmopt_off
+   328  07CB  3003               movlw  3
+   329  07CC  00F3               movwf	((??_main+0)+0+2),f
+   330  07CD  3088               movlw	136
+   331  07CE  00F2               movwf	((??_main+0)+0+1),f
+   332  07CF  3056               	movlw	86
+   333  07D0  00F1               movwf	((??_main+0)+0),f
+   334  07D1                     u2187:
+   335  07D1  0BF1               	decfsz	((??_main+0)+0),f
+   336  07D2  2FD1               	goto	u2187
+   337  07D3  0BF2               	decfsz	((??_main+0)+0+1),f
+   338  07D4  2FD1               	goto	u2187
+   339  07D5  0BF3               	decfsz	((??_main+0)+0+2),f
+   340  07D6  2FD1               	goto	u2187
+   341                           opt asmopt_on
+   342                           
+   343                           	line	39
+   344                           	
+   345  07D7                     l1862:	
+   346                           ;usart_01.c: 39: uart_tx('P');
+   347  07D7  3050               	movlw	(050h)
+   348  07D8  120A  118A  276B   	fcall	_uart_tx
+              120A  118A         
+   349                           	line	40
+   350                           ;usart_01.c: 40: _delay((unsigned long)((100)*(20000000/4000.0)));
+   351                           	opt asmopt_off
+   352  07DD  3003               movlw  3
+   353  07DE  00F3               movwf	((??_main+0)+0+2),f
+   354  07DF  3088               movlw	136
+   355  07E0  00F2               movwf	((??_main+0)+0+1),f
+   356  07E1  3056               	movlw	86
+   357  07E2  00F1               movwf	((??_main+0)+0),f
+   358  07E3                     u2197:
+   359  07E3  0BF1               	decfsz	((??_main+0)+0),f
+   360  07E4  2FE3               	goto	u2197
+   361  07E5  0BF2               	decfsz	((??_main+0)+0+1),f
+   362  07E6  2FE3               	goto	u2197
+   363  07E7  0BF3               	decfsz	((??_main+0)+0+2),f
+   364  07E8  2FE3               	goto	u2197
+   365                           opt asmopt_on
+   366                           
+   367                           	line	41
+   368                           	
+   369  07E9                     l1864:	
+   370                           ;usart_01.c: 41: uart_tx('I');
+   371  07E9  3049               	movlw	(049h)
+   372  07EA  120A  118A  276B   	fcall	_uart_tx
+              120A  118A         
+   373                           	line	42
+   374                           	
+   375  07EF                     l1866:	
+   376                           ;usart_01.c: 42: _delay((unsigned long)((100)*(20000000/4000.0)));
+   377                           	opt asmopt_off
+   378  07EF  3003               movlw  3
+   379  07F0  00F3               movwf	((??_main+0)+0+2),f
+   380  07F1  3088               movlw	136
+   381  07F2  00F2               movwf	((??_main+0)+0+1),f
+   382  07F3  3056               	movlw	86
+   383  07F4  00F1               movwf	((??_main+0)+0),f
+   384  07F5                     u2207:
+   385  07F5  0BF1               	decfsz	((??_main+0)+0),f
+   386  07F6  2FF5               	goto	u2207
+   387  07F7  0BF2               	decfsz	((??_main+0)+0+1),f
+   388  07F8  2FF5               	goto	u2207
+   389  07F9  0BF3               	decfsz	((??_main+0)+0+2),f
+   390  07FA  2FF5               	goto	u2207
+   391                           opt asmopt_on
+   392                           
+   393  07FB  2FFC               	goto	l697
+   394                           	line	44
+   395                           ;usart_01.c: 44: while(1);
+   396                           	
+   397  07FC                     l696:	
+   398                           	
+   399  07FC                     l697:	
+   400  07FC  2FFC               	goto	l697
+   401                           	
+   402  07FD                     l698:	
+   403                           	line	45
+   404                           	
+   405  07FD                     l699:	
+   406                           	global	start
+   407  07FD  120A  118A  2800   	ljmp	start
+   408                           	opt stack 0
+   409                           GLOBAL	__end_of_main
+   410  0800                     	__end_of_main:
+   411 ;; =============== function _main ends ============
+   412                           
+   413                           	signat	_main,88
+   414                           	global	_uart_tx
+   415                           psect	text67,local,class=CODE,delta=2
+   416                           global __ptext67
+   417  076B                     __ptext67:
+   418                           
+   419 ;; *************** function _uart_tx *****************
+   420 ;; Defined at:
+   421 ;;		line 22 in file "C:\Users\Mani\Desktop\pic16f877a\Protocol\USART\usart_01\usart_01.c"
+   422 ;; Parameters:    Size  Location     Type
+   423 ;;  val             1    wreg     unsigned char 
+   424 ;; Auto vars:     Size  Location     Type
+   425 ;;  val             1    0[COMMON] unsigned char 
+   426 ;; Return value:  Size  Location     Type
+   427 ;;		None               void
+   428 ;; Registers used:
+   429 ;;		wreg
+   430 ;; Tracked objects:
+   431 ;;		On entry : 0/0
+   432 ;;		On exit  : 0/0
+   433 ;;		Unchanged: 0/0
+   434 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   435 ;;      Params:         0       0       0       0       0
+   436 ;;      Locals:         1       0       0       0       0
+   437 ;;      Temps:          0       0       0       0       0
+   438 ;;      Totals:         1       0       0       0       0
+   439 ;;Total ram usage:        1 bytes
+   440 ;; Hardware stack levels used:    1
+   441 ;; This function calls:
+   442 ;;		Nothing
+   443 ;; This function is called by:
+   444 ;;		_main
+   445 ;; This function uses a non-reentrant model
+   446 ;;
+   447                           psect	text67
+   448                           	file	"C:\Users\Mani\Desktop\pic16f877a\Protocol\USART\usart_01\usart_01.c"
+   449                           	line	22
+   450                           	global	__size_of_uart_tx
+   451  000C                     	__size_of_uart_tx	equ	__end_of_uart_tx-_uart_tx
+   452                           	
+   453  076B                     _uart_tx:	
+   454                           	opt	stack 7
+   455                           ; Regs used in _uart_tx: [wreg]
+   456                           ;uart_tx@val stored from wreg
+   457  076B  00F0               	movwf	(uart_tx@val)
+   458                           	line	23
+   459                           	
+   460  076C                     l1082:	
+   461                           ;usart_01.c: 23: TXREG = val;
+   462  076C  0870               	movf	(uart_tx@val),w
+   463  076D  1283               	bcf	status, 5	;RP0=0, select bank0
+   464  076E  1303               	bcf	status, 6	;RP1=0, select bank0
+   465  076F  0099               	movwf	(25)	;volatile
+   466                           	line	24
+   467                           ;usart_01.c: 24: while(TXIF == 0);
+   468  0770  2F71               	goto	l690
+   469                           	
+   470  0771                     l691:	
+   471                           	
+   472  0771                     l690:	
+   473  0771  1E0C               	btfss	(100/8),(100)&7
+   474  0772  2F74               	goto	u11
+   475  0773  2F75               	goto	u10
+   476  0774                     u11:
+   477  0774  2F71               	goto	l690
+   478  0775                     u10:
+   479                           	
+   480  0775                     l692:	
+   481                           	line	25
+   482                           ;usart_01.c: 25: TXIF = 0;
+   483  0775  120C               	bcf	(100/8),(100)&7
+   484                           	line	26
+   485                           	
+   486  0776                     l693:	
+   487  0776  0008               	return
+   488                           	opt stack 0
+   489                           GLOBAL	__end_of_uart_tx
+   490  0777                     	__end_of_uart_tx:
+   491 ;; =============== function _uart_tx ends ============
+   492                           
+   493                           	signat	_uart_tx,4216
+   494                           	global	_uart_init
+   495                           psect	text68,local,class=CODE,delta=2
+   496                           global __ptext68
+   497  0777                     __ptext68:
+   498                           
+   499 ;; *************** function _uart_init *****************
+   500 ;; Defined at:
+   501 ;;		line 8 in file "C:\Users\Mani\Desktop\pic16f877a\Protocol\USART\usart_01\usart_01.c"
+   502 ;; Parameters:    Size  Location     Type
+   503 ;;		None
+   504 ;; Auto vars:     Size  Location     Type
+   505 ;;		None
+   506 ;; Return value:  Size  Location     Type
+   507 ;;		None               void
+   508 ;; Registers used:
+   509 ;;		wreg, status,2
+   510 ;; Tracked objects:
+   511 ;;		On entry : 0/0
+   512 ;;		On exit  : 0/0
+   513 ;;		Unchanged: 0/0
+   514 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   515 ;;      Params:         0       0       0       0       0
+   516 ;;      Locals:         0       0       0       0       0
+   517 ;;      Temps:          0       0       0       0       0
+   518 ;;      Totals:         0       0       0       0       0
+   519 ;;Total ram usage:        0 bytes
+   520 ;; Hardware stack levels used:    1
+   521 ;; This function calls:
+   522 ;;		Nothing
+   523 ;; This function is called by:
+   524 ;;		_main
+   525 ;; This function uses a non-reentrant model
+   526 ;;
+   527                           psect	text68
+   528                           	file	"C:\Users\Mani\Desktop\pic16f877a\Protocol\USART\usart_01\usart_01.c"
+   529                           	line	8
+   530                           	global	__size_of_uart_init
+   531  0013                     	__size_of_uart_init	equ	__end_of_uart_init-_uart_init
+   532                           	
+   533  0777                     _uart_init:	
+   534                           	opt	stack 7
+   535                           ; Regs used in _uart_init: [wreg+status,2]
+   536                           	line	9
+   537                           	
+   538  0777                     l1068:	
+   539                           ;usart_01.c: 9: TRISC6 = 1;
+   540  0777  1683               	bsf	status, 5	;RP0=1, select bank1
+   541  0778  1303               	bcf	status, 6	;RP1=0, select bank1
+   542  0779  1707               	bsf	(1086/8)^080h,(1086)&7
+   543                           	line	10
+   544                           ;usart_01.c: 10: TRISC7 = 0;
+   545  077A  1387               	bcf	(1087/8)^080h,(1087)&7
+   546                           	line	11
+   547                           	
+   548  077B                     l1070:	
+   549                           ;usart_01.c: 11: TXSTA = 0X00;
+   550  077B  0198               	clrf	(152)^080h	;volatile
+   551                           	line	12
+   552                           ;usart_01.c: 12: RCSTA = 0X00;
+   553  077C  1283               	bcf	status, 5	;RP0=0, select bank0
+   554  077D  1303               	bcf	status, 6	;RP1=0, select bank0
+   555  077E  0198               	clrf	(24)	;volatile
+   556                           	line	13
+   557                           	
+   558  077F                     l1072:	
+   559                           ;usart_01.c: 13: SPBRG = 31;
+   560  077F  301F               	movlw	(01Fh)
+   561  0780  1683               	bsf	status, 5	;RP0=1, select bank1
+   562  0781  1303               	bcf	status, 6	;RP1=0, select bank1
+   563  0782  0099               	movwf	(153)^080h	;volatile
+   564                           	line	14
+   565                           	
+   566  0783                     l1074:	
+   567                           ;usart_01.c: 14: TXEN = 1;
+   568  0783  1698               	bsf	(1221/8)^080h,(1221)&7
+   569                           	line	15
+   570                           	
+   571  0784                     l1076:	
+   572                           ;usart_01.c: 15: SPEN = 1;
+   573  0784  1283               	bcf	status, 5	;RP0=0, select bank0
+   574  0785  1303               	bcf	status, 6	;RP1=0, select bank0
+   575  0786  1798               	bsf	(199/8),(199)&7
+   576                           	line	16
+   577                           	
+   578  0787                     l1078:	
+   579                           ;usart_01.c: 16: TXIF = 0;
+   580  0787  120C               	bcf	(100/8),(100)&7
+   581                           	line	17
+   582                           	
+   583  0788                     l1080:	
+   584                           ;usart_01.c: 17: RCIF = 0;
+   585  0788  128C               	bcf	(101/8),(101)&7
+   586                           	line	19
+   587                           	
+   588  0789                     l687:	
+   589  0789  0008               	return
+   590                           	opt stack 0
+   591                           GLOBAL	__end_of_uart_init
+   592  078A                     	__end_of_uart_init:
+   593 ;; =============== function _uart_init ends ============
+   594                           
+   595                           	signat	_uart_init,88
+   596                           psect	text69,local,class=CODE,delta=2
+   597                           global __ptext69
+   598  0000                     __ptext69:
+   599                           	global	btemp
+   600  007E                     	btemp set 07Eh
+   601                           
+   602                           	DABS	1,126,2	;btemp
+   603                           	global	wtemp0
+   604  007E                     	wtemp0 set btemp
+
+
+HI-TECH Software PICC Macro Assembler V9.81 build 7503 
+Symbol Table                                                                                   Mon Jul 18 17:08:17 2022
+
+                  u10 0775                    u11 0774                   l690 0771                   l691 0771  
+                 l692 0775                   l693 0776                   l687 0789                   l696 07FC  
+                 l697 07FC                   l698 07FD                   l699 07FD                  l1070 077B  
+                l1080 0788                  l1072 077F                  l1074 0783                  l1082 076C  
+                l1076 0784                  l1068 0777                  l1078 0787                  l1850 078A  
+                l1860 07CB                  l1852 0795                  l1862 07D7                  l1854 07A1  
+                l1864 07E9                  l1856 07B3                  l1866 07EF                  l1858 07B9  
+                u2207 07F5                  u2157 079B                  u2167 07AD                  u2177 07BF  
+                u2187 07D1                  u2197 07E3                  _RCIF 0065                  _SPEN 00C7  
+                _TXEN 04C5                  _TXIF 0064                  _main 078A                  btemp 007E  
+                start 0000                 ?_main 0070                 _RCSTA 0018                 _SPBRG 0099  
+               _TXREG 0019                 _TXSTA 0098       __end_of_uart_tx 0777                 status 0003  
+               wtemp0 007E          __end_of_main 0800                ??_main 0071                _TRISC6 043E  
+              _TRISC7 043F             ??_uart_tx 0070        __pcstackCOMMON 0070            __pmaintext 078A  
+  __size_of_uart_init 0013               _uart_tx 076B  end_of_initialization 0767     __end_of_uart_init 078A  
+ start_initialization 0767              ?_uart_tx 0070             _uart_init 0777            uart_tx@val 0070  
+          ?_uart_init 0070              __ptext66 0000              __ptext67 076B              __ptext68 0777  
+            __ptext69 0000      __size_of_uart_tx 000C         __size_of_main 0076           ??_uart_init 0070  

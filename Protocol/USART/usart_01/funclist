@@ -1,0 +1,4 @@
+_uart_tx: CODE, 1899 0 12
+_main: CODE, 1930 0 118
+_uart_init: CODE, 1911 0 19
+Total: 149
